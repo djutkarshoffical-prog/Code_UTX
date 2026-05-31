@@ -1,0 +1,1574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>InternX by UTX | Internship Monitoring & Progress Tracking System</title>
+  <meta name="description" content="A premium glassmorphic portal for managing, tracking, and optimizing student internship progress.">
+  <link rel="stylesheet" href="styles.css">
+  <!-- Spline 3D Viewer Script -->
+  <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.0/build/spline-viewer.js"></script>
+</head>
+<body>
+
+  <!-- Background Glowing Blobs -->
+  <div class="glow-bg">
+    <div class="glow-blob blob-1"></div>
+    <div class="glow-blob blob-2"></div>
+    <div class="glow-blob blob-3"></div>
+  </div>
+
+  <!-- ==================== LANDING PAGE HEADER ==================== -->
+  <header id="main-header">
+    <div class="container nav-container">
+      <nav>
+        <a href="#" class="logo" id="home-logo" onclick="showLandingPage(); return false;">
+          <div class="logo-dot"></div>
+          <span>InternX <span class="logo-by">by UTX</span></span>
+        </a>
+        <ul class="nav-links">
+          <li><a href="#features">Features</a></li>
+          <li><a href="#about">About Platform</a></li>
+          <li><a href="#faqs">FAQs</a></li>
+        </ul>
+        <div class="nav-actions" style="display: flex; align-items: center; gap: 12px;">
+          <span id="firebase-status-badge" class="firebase-status-badge fallback" onclick="openFirebaseConfigModal()" title="Configure Firebase Database">
+            DB: Local Storage
+          </span>
+          <button class="btn btn-secondary btn-sm" onclick="showAuthPage('login')">Log In</button>
+          <button class="btn btn-primary btn-sm" onclick="showAuthPage('register')">Get Started</button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ==================== LANDING PAGE ==================== -->
+  <main id="landing-page" class="landing-section">
+    <div class="container">
+      <!-- Hero Section -->
+      <section class="hero">
+        <h1 class="gradient-text">Empower Your Team's Potential</h1>
+        <p>A next-generation, glassmorphic monitoring and progress tracking system designed for student interns, professional mentors, and cohort coordinators.</p>
+        <div class="flex justify-center gap-3">
+          <button class="btn btn-primary" onclick="showAuthPage('register')">Launch Portal</button>
+          <a href="#features" class="btn btn-secondary">Explore Features</a>
+        </div>
+      </section>
+
+      <!-- Stats Grid -->
+      <section id="about" class="stats-grid">
+        <div class="stat-card glass-panel">
+          <div class="stat-value gradient-text" id="stat-count-students">120+</div>
+          <div class="stat-label">Active Interns</div>
+        </div>
+        <div class="stat-card glass-panel">
+          <div class="stat-value gradient-text" id="stat-count-tasks">94%</div>
+          <div class="stat-label">Task Completion</div>
+        </div>
+        <div class="stat-card glass-panel">
+          <div class="stat-value gradient-text" id="stat-count-mentors">45+</div>
+          <div class="stat-label">Expert Mentors</div>
+        </div>
+        <div class="stat-card glass-panel">
+          <div class="stat-value gradient-text" id="stat-count-hours">4.8k</div>
+          <div class="stat-label">Hours Tracked</div>
+        </div>
+      </section>
+
+      <!-- Features Section -->
+      <section id="features" class="mt-4">
+        <h2 class="section-title neon-glow">Key Platform Deliverables</h2>
+        <p class="section-subtitle">A central digital workspace providing visibility, task orchestration, and evaluation reports across the entire internship journey.</p>
+        
+        <div class="features-grid">
+          <div class="feature-card glass-panel">
+            <div class="feature-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"></path><path d="M12 6v6l4 2"></path></svg>
+            </div>
+            <h3>Real-Time Task Monitoring</h3>
+            <p>Assign deliverables, specify due dates, and track student updates via an interactive, drag-and-drop Kanban interface.</p>
+          </div>
+          <div class="feature-card glass-panel">
+            <div class="feature-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+            </div>
+            <h3>Weekly Activity Logging</h3>
+            <p>Students build detailed reports logging working hours, weekly accomplishments, and blockers for mentor approval.</p>
+          </div>
+          <div class="feature-card glass-panel">
+            <div class="feature-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+            </div>
+            <h3>Unified Mentor Chat</h3>
+            <p>Direct communication channels within the app keep discussions contextual, resolving blockers and queries rapidly.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQs -->
+      <section id="faqs" class="mt-4">
+        <h2 class="section-title neon-glow">Frequently Asked Questions</h2>
+        <p class="section-subtitle">Quick answers to understand how the platform coordinates between roles.</p>
+        <div class="glass-panel" style="padding: 24px; display: flex; flex-direction: column; gap: 20px;">
+          <div>
+            <h4 style="color: var(--primary-magenta); margin-bottom: 6px;">How do interns receive tasks?</h4>
+            <p style="color: var(--text-muted); font-size: 14px;">Mentors create tasks directly within the Mentor Portal. These tasks instantly populate on the student's personal Kanban task list.</p>
+          </div>
+          <hr style="border: none; border-top: 1px solid var(--border-color);">
+          <div>
+            <h4 style="color: var(--primary-magenta); margin-bottom: 6px;">Who approves weekly progress logs?</h4>
+            <p style="color: var(--text-muted); font-size: 14px;">Once an intern submits their weekly report, the assigned Mentor is notified in their Review queue to approve, request revisions, or add comments.</p>
+          </div>
+          <hr style="border: none; border-top: 1px solid var(--border-color);">
+          <div>
+            <h4 style="color: var(--primary-magenta); margin-bottom: 6px;">What parameters can the Admin monitor?</h4>
+            <p style="color: var(--text-muted); font-size: 14px;">Admins oversee database accounts, manage student-mentor pairings, configure cohorts, and check platform-wide progress statistics.</p>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- ==================== AUTHENTICATION PAGE ==================== -->
+  <section id="auth-page" class="auth-section hidden">
+    <div class="auth-card glass-panel">
+      <!-- Login View -->
+      <div id="login-view">
+        <div class="auth-header">
+          <h2>Welcome Back</h2>
+          <p>Login to your role workspace</p>
+        </div>
+        <form id="login-form" onsubmit="handleLoginSubmit(event)">
+          <div class="form-group">
+            <label for="login-email">Email Address</label>
+            <input type="email" id="login-email" class="form-control" placeholder="name@internship.com" required autocomplete="username">
+          </div>
+          <div class="form-group">
+            <label for="login-password">Password</label>
+            <input type="password" id="login-password" class="form-control pwd-input" placeholder="••••••••" required autocomplete="current-password">
+            <span class="pwd-toggle" onclick="togglePasswordVisibility('login-password')">
+              <svg class="eye-open" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+              <svg class="eye-closed hidden" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path><line x1="1" y1="1" x2="23" y2="23"></line></svg>
+            </span>
+          </div>
+          <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 10px;">Sign In</button>
+        </form>
+        <div class="auth-footer" style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
+          <p>Don't have an account? <a href="#" onclick="toggleAuthForms('register')">Register Now</a></p>
+          <a href="#" onclick="openFirebaseConfigModal(); return false;" style="font-size: 11px; color: var(--text-muted); text-decoration: underline;">🔧 Firebase Connection Settings</a>
+        </div>
+      </div>
+
+      <!-- Register View -->
+      <div id="register-view" class="hidden">
+        <div class="auth-header">
+          <h2>Create Account</h2>
+          <p>Register as a student or mentor</p>
+        </div>
+        <div class="role-selector">
+          <div class="role-option active" id="role-student" onclick="setRegisterRole('student')">Student</div>
+          <div class="role-option" id="role-mentor" onclick="setRegisterRole('mentor')">Mentor</div>
+          <div class="role-option" id="role-admin" onclick="setRegisterRole('admin')">Admin</div>
+        </div>
+        <form id="register-form" onsubmit="handleRegisterSubmit(event)">
+          <div class="form-group">
+            <label for="reg-name">Full Name</label>
+            <input type="text" id="reg-name" class="form-control" placeholder="E.g. Sneha Roy" required>
+          </div>
+          <div class="form-group">
+            <label for="reg-email">Email Address</label>
+            <input type="email" id="reg-email" class="form-control" placeholder="name@internship.com" required autocomplete="username">
+          </div>
+          <!-- Student Specific Field -->
+          <div class="form-group" id="reg-domain-group">
+            <label for="reg-domain">Technical Domain</label>
+            <select id="reg-domain" class="form-control" onchange="handleRegisterDomainChange(this.value)" style="background-color: #0e0e15;">
+              <option value="Web Development">Web Development</option>
+              <option value="Python Full Stack">Python Full Stack</option>
+              <option value="UI/UX Design">UI/UX Design</option>
+            </select>
+          </div>
+          <!-- Assigned Mentor Field (Dynamic for Student) -->
+          <div class="form-group" id="reg-mentor-group">
+            <label for="reg-mentor-select">Assigned Mentor</label>
+            <select id="reg-mentor-select" class="form-control" style="background-color: #0e0e15;">
+              <!-- Dynamically populated -->
+            </select>
+          </div>
+          <!-- Mentor Specific Field -->
+          <div class="form-group hidden" id="reg-title-group">
+            <label for="reg-title">Job Title</label>
+            <input type="text" id="reg-title" class="form-control" placeholder="E.g. Engineering Lead">
+          </div>
+          <div class="form-group hidden" id="reg-mentor-domain-group">
+            <label for="reg-mentor-domain">Technical Domain</label>
+            <select id="reg-mentor-domain" class="form-control" style="background-color: #0e0e15;">
+              <option value="Web Development">Web Development</option>
+              <option value="Python Full Stack">Python Full Stack</option>
+              <option value="UI/UX Design">UI/UX Design</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="reg-password">Password</label>
+            <input type="password" id="reg-password" class="form-control pwd-input" placeholder="Create secure password" required autocomplete="new-password">
+            <span class="pwd-toggle" onclick="togglePasswordVisibility('reg-password')">
+              <svg class="eye-open" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+              <svg class="eye-closed hidden" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path><line x1="1" y1="1" x2="23" y2="23"></line></svg>
+            </span>
+          </div>
+
+          <!-- Student Webcam Face Registration Section -->
+          <div id="reg-face-scan-section" class="form-group" style="margin-top: 15px; border-top: 1px solid var(--border-color); padding-top: 15px;">
+            <label style="display: block; font-size: 13px; font-weight: 500; margin-bottom: 8px; color: var(--text-muted);">Enroll AI Face Attendance Profile (Required for Students)</label>
+            <div class="face-scan-container">
+              <video id="reg-webcam" class="face-scan-video" autoplay playsinline muted></video>
+              <div class="face-scan-overlay"></div>
+              <div class="face-scan-bar"></div>
+              <div id="reg-face-captured-overlay" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; background: rgba(7, 7, 10, 0.85); display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 8px; z-index: 10; display: none;">
+                <span style="color: var(--success); font-size: 28px;">✔️</span>
+                <span style="color: #fff; font-size: 12px; font-weight: 600;">Face Enrolled Successfully!</span>
+              </div>
+            </div>
+            <div style="display: flex; gap: 8px; margin-top: 10px;">
+              <button type="button" class="btn btn-secondary btn-sm" onclick="toggleRegWebcam()" id="reg-webcam-toggle-btn" style="flex: 1; border-color: var(--primary-magenta); color: var(--primary-magenta); cursor: pointer;">🔌 Turn On Camera</button>
+              <button type="button" class="btn btn-primary btn-sm" onclick="captureRegistrationFace()" id="reg-capture-btn" style="flex: 1; display: none; cursor: pointer;">📸 Capture Face</button>
+            </div>
+            <div id="reg-file-upload-container" style="margin-top: 10px; display: none;">
+              <label for="reg-file-input" style="display: block; font-size: 11px; color: var(--text-muted); margin-bottom: 4px;">Or upload a face photo from your device:</label>
+              <input type="file" id="reg-file-input" accept="image/*" class="form-control" style="font-size: 11px; padding: 4px;" onchange="handleRegistrationFileUpload(event)">
+            </div>
+            <input type="hidden" id="reg-face-data">
+            <div id="reg-face-status" style="font-size: 11px; margin-top: 6px; text-align: center; color: var(--text-dark);">Please turn on your camera and center your face.</div>
+          </div>
+
+          <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 10px;">Sign Up</button>
+        </form>
+        <div class="auth-footer" style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
+          <p>Already have an account? <a href="#" onclick="toggleAuthForms('login')">Sign In</a></p>
+          <a href="#" onclick="resetDatabaseForDemo(); return false;" style="font-size: 11px; color: var(--text-dark); text-decoration: underline;">🔄 Reset System Database</a>
+          <a href="#" onclick="openFirebaseConfigModal(); return false;" style="font-size: 11px; color: var(--text-muted); text-decoration: underline;">🔧 Firebase Connection Settings</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== PORTALS DASHBOARD LAYOUT ==================== -->
+  <section id="portal-page" class="portal-layout hidden">
+    <!-- Sidebar -->
+    <aside class="portal-sidebar">
+      <a href="#" class="logo" style="margin-bottom: 8px;">
+        <div class="logo-dot"></div>
+        <span>InternX <span class="logo-by">by UTX</span></span>
+      </a>
+      <div style="padding: 0 16px 14px 16px; border-bottom: 1px solid var(--border-color); margin-bottom: 16px; display: flex; justify-content: center;">
+        <span id="firebase-status-badge-sidebar" class="firebase-status-badge fallback" onclick="openFirebaseConfigModal()" title="Configure Firebase Database" style="width: 100%; text-align: center; display: block;">
+          DB: Local Storage (Fallback)
+        </span>
+      </div>
+
+      <!-- Student Menu -->
+      <ul class="sidebar-menu" id="student-menu">
+        <li><a href="#" class="active" onclick="switchTab('student', 'dash')">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="9"></rect><rect x="14" y="3" width="7" height="5"></rect><rect x="14" y="12" width="7" height="9"></rect><rect x="3" y="16" width="7" height="5"></rect></svg>
+          <span>Dashboard</span>
+        </a></li>
+        <li><a href="#" onclick="switchTab('student', 'tasks')">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="9" y1="15" x2="15" y2="15"></line><line x1="9" y1="19" x2="15" y2="19"></line><line x1="9" y1="11" x2="10" y2="11"></line></svg>
+          <span>Tasks Board</span>
+        </a></li>
+        <li><a href="#" onclick="switchTab('student', 'logs')">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
+          <span>Weekly Logs</span>
+        </a></li>
+        <li><a href="#" onclick="switchTab('student', 'chat')">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+          <span>Mentor Chat</span>
+        </a></li>
+        <li><a href="#" onclick="switchTab('student', 'skills')">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"></path><path d="M2 17l10 5 10-5"></path><path d="M2 12l10 5 10-5"></path></svg>
+          <span>Skills & Resources</span>
+        </a></li>
+      </ul>
+
+      <!-- Mentor Menu -->
+      <ul class="sidebar-menu hidden" id="mentor-menu">
+        <li><a href="#" class="active" onclick="switchTab('mentor', 'dash')">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+          <span>My Interns</span>
+        </a></li>
+        <li><a href="#" onclick="switchTab('mentor', 'tasks')">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
+          <span>Manage Tasks</span>
+        </a></li>
+        <li><a href="#" onclick="switchTab('mentor', 'reviews')">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><path d="m9 15 2 2 4-4"></path></svg>
+          <span>Reviews Log</span>
+        </a></li>
+        <li><a href="#" onclick="switchTab('mentor', 'chat')">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+          <span>Intern Chat</span>
+        </a></li>
+        <li><a href="#" onclick="switchTab('mentor', 'attendance')">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+          <span>Attendance</span>
+        </a></li>
+      </ul>
+
+      <!-- Admin Menu -->
+      <ul class="sidebar-menu hidden" id="admin-menu">
+        <li><a href="#" class="active" onclick="switchTab('admin', 'dash')">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+          <span>Platform Metrics</span>
+        </a></li>
+        <li><a href="#" onclick="switchTab('admin', 'users')">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><line x1="19" y1="8" x2="19" y2="14"></line><line x1="22" y1="11" x2="16" y2="11"></line></svg>
+          <span>User Accounts</span>
+        </a></li>
+        <li><a href="#" onclick="switchTab('admin', 'relations')">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13.828 10.172a4 4 0 0 0-5.656 0l-4 4a4 4 0 1 0 5.656 5.656l1.102-1.101"></path><path d="M10.172 13.828a4 4 0 0 0 5.656 0l4-4a4 4 0 1 0-5.656-5.656l-1.1 1.1"></path></svg>
+          <span>Assign Pairings</span>
+        </a></li>
+      </ul>
+
+      <!-- Sidebar User Profile Info (Clickable for editing profile) -->
+      <div class="sidebar-user" onclick="openEditProfileModal()" style="cursor: pointer; transition: background var(--transition-fast); border-radius: 12px; padding: 12px 10px;" title="Edit Profile Details">
+        <img src="" alt="Avatar" class="user-avatar" id="sidebar-avatar" style="cursor: pointer;" onclick="event.stopPropagation(); openChatImageLightbox(this.src)">
+        <div class="user-info">
+          <div class="user-name" id="sidebar-name" style="display: flex; align-items: center; gap: 4px;">User Name <span style="font-size: 10px; opacity: 0.5;">✏️</span></div>
+          <div class="user-role" id="sidebar-role">Role</div>
+        </div>
+        <div class="logout-btn" onclick="handleLogout(); event.stopPropagation();" title="Log out" style="padding: 4px;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Content Workspace -->
+    <div class="portal-content">
+      
+      <!-- ==================== STUDENT PORTAL VIEWS ==================== -->
+      <div id="student-workspace" class="hidden" style="position: relative; min-height: 500px;">
+        
+        <!-- Daily Face Attendance Gatekeeper Overlay -->
+        <div id="student-daily-lock-overlay" class="glass-panel" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 999; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 40px; text-align: center; background: rgba(7, 7, 10, 0.96); backdrop-filter: blur(20px); border-radius: 16px;">
+          <h2 style="color: var(--primary-magenta); font-size: 32px; margin-bottom: 8px; font-family: 'Outfit', sans-serif;">🤖 Security Daily Check-In Gate</h2>
+          <p style="font-size: 14px; color: var(--text-muted); max-width: 500px; margin-bottom: 24px;">Please complete your daily AI Face Attendance scan to unlock your internship dashboard and log hours.</p>
+          
+          <div class="face-scan-container" style="width: 320px; height: 240px; border: 2px solid var(--primary-magenta); box-shadow: 0 0 20px var(--primary-glow); margin-bottom: 20px;">
+            <video id="daily-webcam" class="face-scan-video" autoplay playsinline muted></video>
+            <div class="face-scan-overlay" style="width: 140px; height: 170px;"></div>
+            <div class="face-scan-bar"></div>
+            <div id="daily-match-indicator" style="position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); background: rgba(7, 7, 10, 0.9); padding: 4px 12px; border-radius: 12px; font-size: 11px; font-weight: bold; color: var(--primary-magenta); border: 1px solid var(--primary-magenta); z-index: 10; display: none;">Matching: 0%</div>
+          </div>
+          
+          <div id="daily-status-text" style="font-size: 14px; font-weight: 600; margin-top: 10px; color: #fff; margin-bottom: 15px;">Camera offline. Click below to start scanning.</div>
+          <div id="daily-progress-bar-container" style="background: rgba(255,255,255,0.05); height: 6px; width: 320px; border-radius: 3px; overflow: hidden; margin-bottom: 20px; display: none;">
+            <div id="daily-progress-bar" style="width: 0%; height: 100%; background: var(--primary-magenta); box-shadow: 0 0 8px var(--primary-magenta); transition: width 0.1s linear;"></div>
+          </div>
+          
+          <div id="daily-file-upload-container" style="margin-top: 10px; display: none; width: 320px; text-align: left; margin-bottom: 20px;">
+            <label for="daily-file-input" style="display: block; font-size: 11px; color: var(--text-muted); margin-bottom: 4px;">Or upload your face photo to verify check-in:</label>
+            <input type="file" id="daily-file-input" accept="image/*" class="form-control" style="font-size: 11px; padding: 4px;" onchange="handleDailyFileUpload(event)">
+          </div>
+          
+          <div style="display: flex; gap: 12px;">
+            <button type="button" class="btn btn-primary" id="daily-scan-btn" onclick="startDailyAttendanceScan()" style="padding: 12px 28px; font-size: 15px; cursor: pointer;">🔋 Scan & Check-In</button>
+            <button type="button" class="btn btn-secondary" onclick="handleLogout()" style="border-color: var(--danger); color: var(--danger); padding: 12px 20px; font-size: 15px; cursor: pointer;">Log Out</button>
+          </div>
+        </div>
+
+        <!-- Tab: Dashboard -->
+        <div id="student-tab-dash" class="portal-tab-content">
+          <div class="top-nav">
+            <div class="page-title">
+              <h2 id="student-welcome-title">Welcome Back, Rohan!</h2>
+              <p>Domain: <span id="student-welcome-domain" style="color: var(--primary-magenta); font-weight: 600;">Frontend Developer</span></p>
+            </div>
+            <div style="display: flex; gap: 8px; align-items: center;">
+              <div class="btn btn-sm" id="student-attendance-indicator" onclick="handleDailyAttendanceClick()" style="cursor: pointer; border: 1px solid transparent; transition: all var(--transition-fast);">Daily Attendance: Pending</div>
+              <div class="btn btn-secondary btn-sm" id="student-mentor-indicator">Mentor: Vikram Sharma</div>
+            </div>
+          </div>
+
+          <div class="dash-grid">
+            <div class="summary-card glass-panel">
+              <div class="card-icon pink">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+              </div>
+              <div class="card-details">
+                <h4>Internship Progress</h4>
+                <div class="value" id="student-dash-progress-val">68%</div>
+                <div class="progress-container"><div class="progress-bar" id="student-dash-progress-bar" style="width: 68%;"></div></div>
+              </div>
+            </div>
+            <div class="summary-card glass-panel">
+              <div class="card-icon purple">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+              </div>
+              <div class="card-details">
+                <h4>Completed Tasks</h4>
+                <div class="value" id="student-dash-tasks-val">2 / 4</div>
+              </div>
+            </div>
+            <div class="summary-card glass-panel">
+              <div class="card-icon blue">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v6m0 8v6M4.93 4.93l4.24 4.24m6.36 6.36l4.24 4.24M2 12h6m8 0h6M4.93 19.07l4.24-4.24m6.36-6.36l4.24-4.24"></path></svg>
+              </div>
+              <div class="card-details">
+                <h4>Hours Accounted</h4>
+                <div class="value" id="student-dash-hours-val">120 hrs</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="dash-row">
+            <div class="dash-panel glass-panel">
+              <h3>Recent Deliverables & Tasks</h3>
+              <div style="overflow-x: auto;">
+                <table class="custom-table" id="student-dash-tasks-table">
+                  <thead>
+                    <tr>
+                      <th>Task Title</th>
+                      <th>Due Date</th>
+                      <th>Status</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!-- Injected via JavaScript -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="dash-panel glass-panel">
+              <h3>Your Progress Log</h3>
+              <div class="chart-container" id="student-dash-chart">
+                <!-- SVG/HTML Bars Injected via JS -->
+              </div>
+              <p class="mt-4" style="font-size: 12px; color: var(--text-muted); text-align: center;">Hours logged weekly during the current cohort.</p>
+            </div>
+          </div>
+
+          <div class="dash-row mt-4">
+            <div class="dash-panel glass-panel">
+              <h3>Achievements & Progress Milestones</h3>
+              <p style="font-size:12px; color:var(--text-muted); margin-bottom:12px;">Locked and unlocked milestones based on task accomplishments and effort logs.</p>
+              <div class="badges-grid" id="student-badges-grid">
+                <!-- Badges injected dynamically via JS -->
+              </div>
+            </div>
+
+            <div class="dash-panel glass-panel">
+              <h3>Quick Sync Notes & Reminders</h3>
+              <p style="font-size:12px; color:var(--text-muted); margin-bottom:12px;">Jot down items to discuss in your next weekly call with your mentor.</p>
+              <div style="display:flex; flex-direction:column; gap:12px;">
+                <textarea id="student-sync-notes" class="form-control" rows="4" placeholder="Mention design ideas, blockers faced, pull requests to review..." style="resize:none; background:rgba(0,0,0,0.2);"></textarea>
+                <button class="btn btn-primary btn-sm" onclick="saveStudentSyncNotes()">Save Notes</button>
+              </div>
+            </div>
+          </div>
+
+
+        </div>
+
+        <!-- Tab: Tasks Kanban Board -->
+        <div id="student-tab-tasks" class="portal-tab-content hidden">
+          <div class="top-nav">
+            <div class="page-title">
+              <h2>Kanban Deliverables Board</h2>
+              <p>Drag and drop tasks, or double-click to submit deliverables for verification.</p>
+            </div>
+          </div>
+
+          <div class="kanban-board">
+            <div class="kanban-col" id="col-todo" ondragover="allowDrop(event)" ondrop="handleDrop(event, 'Todo')">
+              <div class="col-header">
+                <span>Todo</span>
+                <span class="col-count" id="count-todo">0</span>
+              </div>
+              <!-- Cards dynamic -->
+            </div>
+            
+            <div class="kanban-col" id="col-inprogress" ondragover="allowDrop(event)" ondrop="handleDrop(event, 'In Progress')">
+              <div class="col-header">
+                <span>In Progress</span>
+                <span class="col-count" id="count-inprogress">0</span>
+              </div>
+              <!-- Cards dynamic -->
+            </div>
+
+            <div class="kanban-col" id="col-pending" ondragover="allowDrop(event)" ondrop="handleDrop(event, 'Pending Approval')">
+              <div class="col-header">
+                <span>Review / Verification</span>
+                <span class="col-count" id="count-pending">0</span>
+              </div>
+              <!-- Cards dynamic -->
+            </div>
+
+            <div class="kanban-col" id="col-completed" ondragover="allowDrop(event)" ondrop="handleDrop(event, 'Completed')">
+              <div class="col-header">
+                <span>Completed</span>
+                <span class="col-count" id="count-completed">0</span>
+              </div>
+              <!-- Cards dynamic -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab: Weekly Reports Logs -->
+        <div id="student-tab-logs" class="portal-tab-content hidden">
+          <div class="top-nav">
+            <div class="page-title">
+              <h2>Weekly Progress Logs</h2>
+              <p>Fill in work summary, hours logged, and log blockers for mentor review.</p>
+            </div>
+          </div>
+
+          <div class="report-grid">
+            <div class="dash-panel glass-panel">
+              <h3>Submit Weekly Report</h3>
+              <form id="submit-log-form" onsubmit="handleLogSubmit(event)">
+                <div class="form-group">
+                  <label for="log-week-num">Week Number</label>
+                  <input type="number" id="log-week-num" class="form-control" min="1" max="12" placeholder="E.g. 4" required>
+                </div>
+                <div class="flex gap-2" style="width: 100%;">
+                  <div class="form-group" style="flex: 1;">
+                    <label for="log-start">Start Date</label>
+                    <input type="date" id="log-start" class="form-control" required>
+                  </div>
+                  <div class="form-group" style="flex: 1;">
+                    <label for="log-end">End Date</label>
+                    <input type="date" id="log-end" class="form-control" required>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="log-hours">Total Working Hours</label>
+                  <input type="number" id="log-hours" class="form-control" min="1" max="80" placeholder="E.g. 40" required>
+                </div>
+                <div class="form-group">
+                  <label for="log-summary">Work Accomplished Summary</label>
+                  <textarea id="log-summary" class="form-control" rows="4" placeholder="Detail tasks completed, PRs merged, documents created..." required></textarea>
+                </div>
+                <div class="form-group">
+                  <label for="log-blockers">Blockers Encountered</label>
+                  <textarea id="log-blockers" class="form-control" rows="2" placeholder="Specify technical issues or documentation gaps, if any..."></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Upload Report Log</button>
+              </form>
+            </div>
+
+            <div class="dash-panel glass-panel">
+              <h3>Historical Submissions</h3>
+              <div class="logs-history-list" id="student-logs-list">
+                <!-- Injected via JS -->
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab: Chat with Mentor -->
+        <div id="student-tab-chat" class="portal-tab-content hidden">
+          <div class="top-nav">
+            <div class="page-title">
+              <h2>Direct Communication Channel</h2>
+              <p>Discuss details, review feedback, or resolve technical roadblocks.</p>
+            </div>
+          </div>
+
+          <div class="dash-panel glass-panel chat-wrapper" style="grid-template-columns: 1fr;">
+            <div class="chat-box">
+              <div class="chat-header">
+                <img src="" alt="Mentor" class="user-avatar" id="student-chat-mentor-avatar" style="cursor: pointer;" onclick="openChatImageLightbox(this.src)">
+                <div>
+                  <h4 id="student-chat-mentor-name">Vikram Sharma</h4>
+                  <span style="font-size: 11px; color: var(--success); font-weight: 600;">● Online</span>
+                </div>
+              </div>
+              
+              <div class="chat-history" id="student-chat-history">
+                <!-- Messages dynamic -->
+              </div>
+
+            <div class="chat-composer-wrap" style="position: relative; border-top: 1px solid var(--border-color); padding: 12px 16px;">
+              <!-- Preview Box -->
+              <div id="student-chat-preview-box" class="chat-preview-box hidden" style="display: flex; align-items: center; justify-content: space-between; padding: 6px 12px; background: rgba(224, 26, 139, 0.05); border: 1px solid var(--border-hover); border-radius: 8px; margin-bottom: 8px; font-size: 12px; color: #fff;">
+                <div style="display: flex; align-items: center; gap: 8px;" id="student-chat-preview-content">
+                  <!-- Thumbnail/Name goes here -->
+                </div>
+                <span onclick="cancelChatAttachment('student')" style="cursor: pointer; font-weight: bold; color: var(--danger); font-size: 14px;">&times;</span>
+              </div>
+
+              <form class="chat-input-area" onsubmit="handleSendChat(event, 'student')" style="display: flex; gap: 8px; align-items: center;">
+                <label class="btn btn-secondary chat-attach-btn" style="padding: 10px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; border-color: var(--border-color); width: 38px; height: 38px; flex-shrink: 0; background: rgba(255,255,255,0.02); margin: 0;" title="Attach Image or File">
+                  <input type="file" id="student-chat-file-input" style="display: none;" onchange="handleChatFileSelect('student')">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"></path></svg>
+                </label>
+                <input type="text" id="student-chat-input" class="form-control" placeholder="Type your message..." autocomplete="off" style="margin: 0;">
+                <button type="submit" class="btn btn-primary" style="margin: 0; padding: 10px 20px;">Send</button>
+              </form>
+            </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab: Skills & Learning Resources -->
+        <div id="student-tab-skills" class="portal-tab-content hidden">
+          <div class="top-nav">
+            <div class="page-title">
+              <h2>Skills Roadmap & Learning Resource Center</h2>
+              <p>Track your technical competency progress and access training modules.</p>
+            </div>
+          </div>
+
+          <div class="report-grid">
+            <!-- Left: Competencies checklist -->
+            <div class="dash-panel glass-panel">
+              <h3>Skills Checklist Progress</h3>
+              <p style="font-size:12px; color:var(--text-muted); margin-bottom:16px;">Tick off completed concepts to update your mastery levels.</p>
+              
+              <div class="flex-between mb-2" style="font-weight:600;">
+                <span>Concept Mastery Score</span>
+                <span id="student-skills-pct">0%</span>
+              </div>
+              <div class="progress-container mb-4" style="height:10px;"><div class="progress-bar" id="student-skills-progress-bar" style="width: 0%;"></div></div>
+
+              <div style="display:flex; flex-direction:column; gap:12px;" id="student-skills-list-container">
+                <!-- Injected dynamically via JS -->
+              </div>
+            </div>
+
+            <!-- Right: Learning guides -->
+            <div class="dash-panel glass-panel">
+              <h3>Curated Tech Syllabus Modules</h3>
+              <p style="font-size:12px; color:var(--text-muted); margin-bottom:16px;">Step-by-step reading guides, templates, and reference materials.</p>
+              <div style="display:flex; flex-direction:column; gap:16px; max-height:450px; overflow-y:auto;" id="student-learning-resources">
+                <!-- Injected dynamically via JS -->
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ==================== MENTOR PORTAL VIEWS ==================== -->
+      <div id="mentor-workspace" class="hidden">
+        
+        <!-- Tab: Dashboard (My Interns) -->
+        <div id="mentor-tab-dash" class="portal-tab-content">
+          <div class="top-nav">
+            <div class="page-title">
+              <h2 id="mentor-welcome-title">Mentor Hub: Vikram</h2>
+              <p>Track your assigned interns' current progress metrics and tasks.</p>
+            </div>
+          </div>
+
+          <div class="dash-grid" id="mentor-stats-row">
+            <div class="summary-card glass-panel">
+              <div class="card-icon pink">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle></svg>
+              </div>
+              <div class="card-details">
+                <h4>Assigned Interns</h4>
+                <div class="value" id="mentor-dash-interns-count">2</div>
+              </div>
+            </div>
+            <div class="summary-card glass-panel">
+              <div class="card-icon purple">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+              </div>
+              <div class="card-details">
+                <h4>Pending Tasks Review</h4>
+                <div class="value" id="mentor-dash-pending-tasks">1</div>
+              </div>
+            </div>
+            <div class="summary-card glass-panel">
+              <div class="card-icon blue">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+              </div>
+              <div class="card-details">
+                <h4>Pending Reports Review</h4>
+                <div class="value" id="mentor-dash-pending-reports">1</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Incoming Pairing Requests Panel -->
+          <div class="dash-row full hidden" id="mentor-pairing-requests-panel" style="margin-bottom: 24px;">
+            <div class="dash-panel glass-panel" style="border-color: var(--primary-magenta); box-shadow: 0 0 15px rgba(217, 4, 181, 0.15); width: 100%;">
+              <h3 style="color: var(--primary-magenta); display: flex; align-items: center; gap: 8px;">
+                <span>📥 Incoming Student Pairing Requests</span>
+                <span class="col-count" id="mentor-pairing-req-count" style="background: var(--primary-magenta); color:#fff; font-size:11px; padding:2px 6px; border-radius:10px;">0</span>
+              </h3>
+              <p style="font-size:12px; color:var(--text-muted); margin-bottom:16px;">Students requesting you as their supervisor. Accept to pair and assign tasks.</p>
+              <div style="overflow-x: auto;">
+                <table class="custom-table" id="mentor-pairing-requests-table">
+                  <thead>
+                    <tr>
+                      <th>Intern Name</th>
+                      <th>Email Address</th>
+                      <th>Requested Domain</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!-- Populated via JS -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <div class="dash-row full">
+            <div class="dash-panel glass-panel">
+              <h3>Assigned Interns Summary</h3>
+              <div style="overflow-x: auto;">
+                <table class="custom-table" id="mentor-interns-table">
+                  <thead>
+                    <tr>
+                      <th>Intern Name</th>
+                      <th>Domain</th>
+                      <th>Start Date</th>
+                      <th>Progress Score</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!-- Dynamically populated -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Tab: Manage Tasks -->
+        <div id="mentor-tab-tasks" class="portal-tab-content hidden">
+          <div class="top-nav">
+            <div class="page-title">
+              <h2>Task Orchestrator & Assigner</h2>
+              <p>Create deliverables, set deadlines, and assign tasks to interns.</p>
+            </div>
+          </div>
+
+          <div class="report-grid">
+            <div class="dash-panel glass-panel">
+              <h3>Assign New Task</h3>
+              <form id="create-task-form" onsubmit="handleCreateTask(event)">
+                <div class="form-group">
+                  <label for="task-assign-student">Select Intern</label>
+                  <select id="task-assign-student" class="form-control" style="background-color: #0e0e15;" required>
+                    <!-- Injected options -->
+                  </select>
+                  <div id="no-interns-warning" class="hidden mt-2" style="background: rgba(245, 158, 11, 0.08); border: 1px dashed var(--warning); padding: 12px; border-radius: 8px; font-size: 12px; line-height: 1.4;">
+                    <p style="color: var(--warning); font-weight: 600; margin-bottom: 4px;">⚠️ No Interns Paired Yet</p>
+                    <p style="color: var(--text-muted); margin-bottom: 8px;">Please register a student and select your name as their Mentor, or click below to pair a demo intern for testing.</p>
+                    <button type="button" class="btn btn-secondary btn-sm" onclick="quickAssignDemoIntern()" style="font-size: 11px; padding: 4px 8px; border-color: var(--warning); color: var(--warning); cursor: pointer;">⚡ Quick-Pair Demo Intern to Me</button>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="task-title-input">Task Title</label>
+                  <input type="text" id="task-title-input" class="form-control" placeholder="E.g., Integrate API endpoints" required>
+                </div>
+                <div class="form-group">
+                  <label for="task-platform-link-input">Task Platform Link (Optional, e.g. LeetCode URL)</label>
+                  <input type="url" id="task-platform-link-input" class="form-control" placeholder="https://leetcode.com/problems/your-problem">
+                </div>
+                <div class="form-group">
+                  <label for="task-due-input">Due Date</label>
+                  <input type="date" id="task-due-input" class="form-control" required>
+                </div>
+                <div class="form-group">
+                  <label for="task-desc-input">Task Requirements</label>
+                  <textarea id="task-desc-input" class="form-control" rows="4" placeholder="Detail features to implement, files to modify, or review parameters..."></textarea>
+                </div>
+                <div class="form-group">
+                  <label for="task-file-attachment">Task Document / Attachment (PDF, Word, PPT, Image)</label>
+                  <input type="file" id="task-file-attachment" class="form-control" accept=".pdf,.doc,.docx,.ppt,.pptx,image/*" onchange="handleTaskAttachmentUpload(event)" style="background: rgba(255,255,255,0.02); border: 1px dashed var(--border-color); color: var(--text-muted); cursor: pointer; padding: 10px 16px;">
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Assign Task</button>
+              </form>
+            </div>
+
+            <div class="dash-panel glass-panel">
+              <h3>Task Log Database</h3>
+              <div style="overflow-y: auto; max-height: 480px;">
+                <table class="custom-table" id="mentor-tasks-table">
+                  <thead>
+                    <tr>
+                      <th>Intern</th>
+                      <th>Task</th>
+                      <th>Due</th>
+                      <th>Status</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!-- Populated via JS -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab: Reviews Log -->
+        <div id="mentor-tab-reviews" class="portal-tab-content hidden">
+          <div class="top-nav">
+            <div class="page-title">
+              <h2>Evaluation & Reviews Hub</h2>
+              <p>Review submitted deliverables and weekly activity reports.</p>
+            </div>
+          </div>
+
+          <div class="dash-row">
+            <!-- Left: Pending Task Submissions -->
+            <div class="dash-panel glass-panel">
+              <h3>Pending Tasks Verification</h3>
+              <div class="logs-history-list" id="mentor-pending-tasks-list">
+                <!-- Cards showing submissions -->
+              </div>
+            </div>
+            
+            <!-- Right: Pending Weekly Log Reports -->
+            <div class="dash-panel glass-panel">
+              <h3>Pending Weekly Logs Approval</h3>
+              <div class="logs-history-list" id="mentor-pending-logs-list">
+                <!-- Cards showing weekly reports -->
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab: Chat with Interns -->
+        <div id="mentor-tab-chat" class="portal-tab-content hidden">
+          <div class="top-nav">
+            <div class="page-title">
+              <h2>Intern Messaging Channel</h2>
+              <p>Select an intern to open the chat window.</p>
+            </div>
+          </div>
+
+          <div class="dash-panel glass-panel chat-wrapper">
+            <!-- Left side: list of chats -->
+            <div class="chat-inbox">
+              <div class="inbox-list" id="mentor-inbox-list">
+                <!-- List of assigned student inbox items injected -->
+              </div>
+            </div>
+            
+            <!-- Right side: chat box -->
+            <div class="chat-box" id="mentor-chat-box-area">
+              <div class="chat-header">
+                <img src="" alt="Student Avatar" class="user-avatar" id="mentor-chat-student-avatar" style="cursor: pointer;" onclick="openChatImageLightbox(this.src)">
+                <div style="flex-grow: 1;">
+                  <h4 id="mentor-chat-student-name">Select an Intern</h4>
+                  <span style="font-size: 11px; color: var(--text-dark);" id="mentor-chat-student-status">Offline</span>
+                </div>
+                <button class="btn btn-primary btn-sm hidden" id="mentor-start-call-btn" onclick="startMentorGroupCall()" style="margin-left: auto; font-size: 11px; padding: 6px 12px; gap: 4px;">
+                  🎥 Start Group Call
+                </button>
+              </div>
+              
+              <div class="chat-history" id="mentor-chat-history">
+                <div style="margin: auto; text-align: center; color: var(--text-muted);">
+                  <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" style="margin-bottom: 12px; opacity: 0.5;"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                  <p>Click on an intern in the left column to begin chatting.</p>
+                </div>
+              </div>
+
+            <div class="chat-composer-wrap" style="position: relative; border-top: 1px solid var(--border-color); padding: 12px 16px;">
+              <!-- Preview Box -->
+              <div id="mentor-chat-preview-box" class="chat-preview-box hidden" style="display: flex; align-items: center; justify-content: space-between; padding: 6px 12px; background: rgba(224, 26, 139, 0.05); border: 1px solid var(--border-hover); border-radius: 8px; margin-bottom: 8px; font-size: 12px; color: #fff;">
+                <div style="display: flex; align-items: center; gap: 8px;" id="mentor-chat-preview-content">
+                  <!-- Thumbnail/Name goes here -->
+                </div>
+                <span onclick="cancelChatAttachment('mentor')" style="cursor: pointer; font-weight: bold; color: var(--danger); font-size: 14px;">&times;</span>
+              </div>
+
+              <form class="chat-input-area hidden" id="mentor-chat-form" onsubmit="handleSendChat(event, 'mentor')" style="display: flex; gap: 8px; align-items: center;">
+                <label class="btn btn-secondary chat-attach-btn" style="padding: 10px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; border-color: var(--border-color); width: 38px; height: 38px; flex-shrink: 0; background: rgba(255,255,255,0.02); margin: 0;" title="Attach Image or File">
+                  <input type="file" id="mentor-chat-file-input" style="display: none;" onchange="handleChatFileSelect('mentor')">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"></path></svg>
+                </label>
+                <input type="text" id="mentor-chat-input" class="form-control" placeholder="Type your message..." autocomplete="off" style="margin: 0;">
+                <button type="submit" class="btn btn-primary" style="margin: 0; padding: 10px 20px;">Send</button>
+              </form>
+            </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab: Attendance -->
+        <div id="mentor-tab-attendance" class="portal-tab-content hidden">
+          <div class="top-nav" style="margin-bottom: 20px;">
+            <div class="page-title">
+              <h2>Intern Attendance Tracker</h2>
+              <p>Monitor your interns' daily check-ins, monthly calendars, and weekly performance percentages.</p>
+              <div style="margin-top: 14px; display: flex; gap: 10px;">
+                <button class="btn btn-primary" onclick="exportAttendanceCSV()" style="font-size: 12px; padding: 8px 16px; display: inline-flex; align-items: center; gap: 6px; cursor: pointer; background: var(--primary-magenta); border-color: var(--primary-magenta); font-weight: 600; border-radius: 6px; height: 34px;">
+                  📥 Download CSV
+                </button>
+                <button class="btn btn-secondary" onclick="exportAttendancePDF()" style="font-size: 12px; padding: 8px 16px; display: inline-flex; align-items: center; gap: 6px; cursor: pointer; border-color: var(--accent-blue); color: #fff; background: rgba(42, 107, 242, 0.15); font-weight: 600; border-radius: 6px; height: 34px;">
+                  📄 Download PDF
+                </button>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Monthly Attendance Grid & Filtering -->
+          <div class="dash-row full mt-4">
+            <div class="dash-panel glass-panel">
+              <div style="margin-bottom: 16px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+                  <div>
+                    <h3 style="display: flex; align-items: center; gap: 6px; margin: 0;">📊 Interns Attendance Spreadsheet</h3>
+                    <p style="font-size:12px; color:var(--text-muted); margin: 4px 0 0 0;">Real-time spreadsheet matrix mapping daily check-ins and weekly performance percentages.</p>
+                  </div>
+                  <div>
+                    <h4 style="color: var(--primary-magenta); font-family: 'Outfit'; font-size: 18px; margin: 0;" id="mentor-attendance-month-label">May 2026</h4>
+                  </div>
+                </div>
+                
+                <!-- Filter bar below title -->
+                <div style="display: flex; gap: 8px; align-items: center; margin-top: 12px; background: rgba(255,255,255,0.02); padding: 8px 12px; border-radius: 8px; border: 1px solid var(--border-color); width: fit-content;">
+                  <span style="font-size: 11px; color: var(--text-muted); font-weight: 500;">Filter Technical Domain:</span>
+                  <select id="mentor-domain-filter" class="form-control" style="padding: 4px 8px; font-size: 11px; width: 150px; background: rgba(0,0,0,0.3); height: 26px; border-radius: 4px; color: #fff;" onchange="filterMentorInternsByDomain()">
+                    <option value="All">All Domains</option>
+                  </select>
+                </div>
+              </div>
+              
+              <!-- Spreadsheet View Table -->
+              <div class="calendar-wrapper" style="background: rgba(0,0,0,0.15); padding: 16px; border-radius: 12px; border: 1px solid var(--border-color); overflow-x: auto;">
+                <table class="custom-table" id="mentor-attendance-sheet-table" style="min-width: 1000px; font-size: 11px; width: 100%; border-collapse: collapse;">
+                  <thead>
+                    <tr id="mentor-attendance-sheet-header">
+                      <!-- Populated via JS: Name, Domain, 1-31, W1-W5, Total -->
+                    </tr>
+                  </thead>
+                  <tbody id="mentor-attendance-sheet-body">
+                    <!-- Populated via JS -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- AI Face Attendance Logs (My Interns) -->
+          <div class="dash-row full mt-4">
+            <div class="dash-panel glass-panel">
+              <h3>🤖 AI Face Attendance Logs (My Interns)</h3>
+              <p style="font-size:12px; color:var(--text-muted); margin-bottom:12px;">Real-time face verification records for tasks and log reports submitted by your interns.</p>
+              <div class="attendance-table-wrap">
+                <table class="custom-table" id="mentor-attendance-table">
+                  <thead>
+                    <tr>
+                      <th>Intern Name</th>
+                      <th>Scanned Face</th>
+                      <th>Verification Date & Time</th>
+                      <th>Action Performed</th>
+                      <th>Match Integrity Score</th>
+                      <th>Status</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!-- Injected via JavaScript -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ==================== ADMIN PORTAL VIEWS ==================== -->
+      <div id="admin-workspace" class="hidden">
+        
+        <!-- Tab: Platform Metrics -->
+        <div id="admin-tab-dash" class="portal-tab-content">
+          <div class="top-nav">
+            <div class="page-title">
+              <h2>Coordinator Control Dashboard</h2>
+              <p>System metrics overview for current internship cohort.</p>
+            </div>
+          </div>
+
+          <div class="dash-grid">
+            <div class="summary-card glass-panel">
+              <div class="card-icon pink">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+              </div>
+              <div class="card-details">
+                <h4>Total Interns</h4>
+                <div class="value" id="admin-metric-students">3</div>
+              </div>
+            </div>
+            <div class="summary-card glass-panel">
+              <div class="card-icon purple">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+              </div>
+              <div class="card-details">
+                <h4>Active Mentors</h4>
+                <div class="value" id="admin-metric-mentors">2</div>
+              </div>
+            </div>
+            <div class="summary-card glass-panel">
+              <div class="card-icon blue">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line></svg>
+              </div>
+              <div class="card-details">
+                <h4>Total Assigned Tasks</h4>
+                <div class="value" id="admin-metric-tasks">9</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="dash-row full">
+            <div class="dash-panel glass-panel">
+              <h3>System Overview Statistics</h3>
+              <div class="chart-container" style="height: 300px; justify-content: space-around;" id="admin-global-chart">
+                <!-- Interactive statistics visualization injected -->
+              </div>
+              <p class="mt-4" style="font-size: 13px; color: var(--text-muted); text-align: center;">Comparison of Intern progress rating (Score out of 100) across active cohort profiles.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab: User Accounts -->
+        <div id="admin-tab-users" class="portal-tab-content hidden">
+          <div class="top-nav">
+            <div class="page-title">
+              <h2>User Directory & Management</h2>
+              <p>Register new profiles, delete accounts, and audit access credentials.</p>
+            </div>
+            <button class="btn btn-primary btn-sm" onclick="openAddUserModal()">+ Add User Account</button>
+          </div>
+
+          <div class="dash-panel glass-panel">
+            <h3>Registered System Users</h3>
+            <div style="overflow-x: auto;">
+              <table class="custom-table" id="admin-users-table">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Email Address</th>
+                    <th>System Role</th>
+                    <th>Profile Attribute</th>
+                    <th>Operation</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- Populated dynamically via JS -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab: Assign Pairings -->
+        <div id="admin-tab-relations" class="portal-tab-content hidden">
+          <div class="top-nav">
+            <div class="page-title">
+              <h2>Mentor-Intern Relationship Mapping</h2>
+              <p>Connect student profiles to designated professional supervisors.</p>
+            </div>
+          </div>
+
+          <div class="report-grid">
+            <!-- Assignment Form -->
+            <div class="dash-panel glass-panel">
+              <h3>Map Pairing</h3>
+              <form id="assign-pairing-form" onsubmit="handleAssignPairing(event)">
+                <div class="form-group">
+                  <label for="pair-student">Select Student</label>
+                  <select id="pair-student" class="form-control" style="background-color: #0e0e15;" required>
+                    <!-- Injected via JS -->
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="pair-mentor">Designated Mentor</label>
+                  <select id="pair-mentor" class="form-control" style="background-color: #0e0e15;" required>
+                    <!-- Injected via JS -->
+                  </select>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Save Relationship Mapping</button>
+              </form>
+            </div>
+
+            <!-- Current Mappings Table -->
+            <div class="dash-panel glass-panel">
+              <h3>Active Supervisions</h3>
+              <div style="overflow-y: auto; max-height: 480px;">
+                <table class="custom-table" id="admin-pairings-table">
+                  <thead>
+                    <tr>
+                      <th>Intern</th>
+                      <th>Assigned Mentor</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!-- Mappings populated dynamically -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== SUBMISSION / MODAL FORMS ==================== -->
+  
+  <!-- Student Task Submission Modal -->
+  <div class="modal-overlay" id="submit-task-modal">
+    <div class="modal-content glass-panel">
+      <div class="modal-close" onclick="closeModal('submit-task-modal')">&times;</div>
+      <h3 class="mb-4">Submit Task Deliverable</h3>
+      <form id="task-submission-form" onsubmit="handleTaskSubmissionSubmit(event)">
+        <input type="hidden" id="submit-task-id">
+        <div class="form-group">
+          <label>Task Title</label>
+          <div id="submit-task-title-text" style="font-weight: 600; color: #fff; margin-bottom: 8px;">Task Title Placeholder</div>
+        </div>
+        <div class="form-group">
+          <label for="submit-task-text">Submission Comments</label>
+          <textarea id="submit-task-text" class="form-control" rows="3" placeholder="Provide notes about your approach or what you implemented..." required></textarea>
+        </div>
+        <div class="form-group">
+          <label for="submit-task-link">Project Link (Optional, e.g. GitHub Repository, Figma Design)</label>
+          <input type="url" id="submit-task-link" class="form-control" placeholder="https://github.com/username/project">
+        </div>
+        <div class="form-group">
+          <label for="submit-task-screenshot">Upload Progress Screenshot (Optional)</label>
+          <input type="file" id="submit-task-screenshot" class="form-control" accept="image/*" onchange="previewSubmitScreenshot(event)" style="background: rgba(255,255,255,0.02); border: 1px dashed var(--border-color); color: var(--text-muted); cursor: pointer; padding: 10px 16px;">
+          <div id="submit-task-screenshot-preview-wrap" class="hidden mt-2" style="border: 1px solid var(--border-color); border-radius: 8px; overflow: hidden; max-width: 150px; position: relative;">
+            <img id="submit-task-screenshot-preview" src="" style="width: 100%; display: block; object-fit: cover;">
+            <span onclick="removeSubmitScreenshot()" style="position: absolute; top: 4px; right: 4px; background: rgba(0,0,0,0.7); color: var(--danger); width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; font-weight: bold; font-size: 12px; line-height: 1;">&times;</span>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width: 100%;">Submit for Review</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Admin Add User Modal -->
+  <div class="modal-overlay" id="add-user-modal">
+    <div class="modal-content glass-panel">
+      <div class="modal-close" onclick="closeModal('add-user-modal')">&times;</div>
+      <h3 class="mb-4">Register System Account</h3>
+      <form id="admin-add-user-form" onsubmit="handleAdminAddUser(event)">
+        <div class="form-group">
+          <label for="admin-user-role">System Role</label>
+          <select id="admin-user-role" class="form-control" style="background-color: #0e0e15;" onchange="toggleAdminUserFields(this.value)" required>
+            <option value="student">Student / Intern</option>
+            <option value="mentor">Mentor / Advisor</option>
+            <option value="admin">Platform Coordinator (Admin)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="admin-user-name">Full Name</label>
+          <input type="text" id="admin-user-name" class="form-control" placeholder="E.g., Vikram Sharma" required>
+        </div>
+        <div class="form-group">
+          <label for="admin-user-email">Email Address</label>
+          <input type="email" id="admin-user-email" class="form-control" placeholder="user@company.com" required autocomplete="username">
+        </div>
+        <!-- Role Specific Input fields -->
+        <div class="form-group" id="admin-user-domain-group">
+          <label for="admin-user-domain">Technical Domain</label>
+          <input type="text" id="admin-user-domain" class="form-control" placeholder="E.g., Frontend, Database Design">
+        </div>
+        <div class="form-group hidden" id="admin-user-title-group">
+          <label for="admin-user-title">Job Title</label>
+          <input type="text" id="admin-user-title" class="form-control" placeholder="E.g., Technical Team Lead">
+        </div>
+        <div class="form-group">
+          <label for="admin-user-pwd">Password</label>
+          <input type="password" id="admin-user-pwd" class="form-control pwd-input" placeholder="Enter password" required autocomplete="new-password">
+          <span class="pwd-toggle" onclick="togglePasswordVisibility('admin-user-pwd')">
+            <svg class="eye-open" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+            <svg class="eye-closed hidden" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path><line x1="1" y1="1" x2="23" y2="23"></line></svg>
+          </span>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width: 100%;">Create Account</button>
+      </form>
+    </div>
+  </div>
+  <!-- Face Verification Attendance Modal -->
+  <div class="modal-overlay" id="face-verification-modal" style="z-index: 10000;">
+    <div class="modal-content glass-panel" style="max-width: 400px; text-align: center; padding: 30px;">
+      <h3 style="color: var(--primary-magenta); margin-bottom: 8px;">AI Attendance Verification</h3>
+      <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 16px;">Webcam scan required to log attendance and unlock this action.</p>
+      
+      <div class="face-scan-container" style="height: 220px; border: 2px solid var(--primary-magenta); box-shadow: 0 0 15px var(--primary-glow);">
+        <video id="ver-webcam" class="face-scan-video" autoplay playsinline muted></video>
+        <div class="face-scan-overlay" style="width: 130px; height: 160px;"></div>
+        <div class="face-scan-bar"></div>
+        <div id="ver-match-indicator" style="position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); background: rgba(7, 7, 10, 0.9); padding: 4px 12px; border-radius: 12px; font-size: 11px; font-weight: bold; color: var(--primary-magenta); border: 1px solid var(--primary-magenta); z-index: 10; display: none;">Matching: 0%</div>
+      </div>
+      
+      <div id="ver-status-text" style="font-size: 13px; font-weight: 600; margin-top: 15px; color: #fff;">Initializing Scanner Camera...</div>
+      <div id="ver-progress-bar-container" style="background: rgba(255,255,255,0.05); height: 6px; border-radius: 3px; overflow: hidden; margin-top: 12px; display: none;">
+        <div id="ver-progress-bar" style="width: 0%; height: 100%; background: var(--primary-magenta); box-shadow: 0 0 8px var(--primary-magenta); transition: width 0.1s linear;"></div>
+      </div>
+      
+      <div id="ver-file-upload-container" style="margin-top: 10px; display: none; text-align: left; margin-bottom: 20px;">
+        <label for="ver-file-input" style="display: block; font-size: 11px; color: var(--text-muted); margin-bottom: 4px;">Or upload your face photo to verify:</label>
+        <input type="file" id="ver-file-input" accept="image/*" class="form-control" style="font-size: 11px; padding: 4px;" onchange="handleVerificationFileUpload(event)">
+      </div>
+      
+      <div class="flex gap-2" style="margin-top: 20px; width: 100%;">
+        <button type="button" class="btn btn-secondary" style="flex: 1; border-color: var(--danger); color: var(--danger); cursor: pointer;" onclick="cancelFaceVerification()">Cancel Action</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Face Image Preview Modal -->
+  <div class="modal-overlay" id="face-preview-modal" style="z-index: 10001;">
+    <div class="modal-content glass-panel" style="max-width: 380px; text-align: center; padding: 28px; border-color: var(--primary-magenta);">
+      <div class="modal-close" onclick="closeModal('face-preview-modal')">&times;</div>
+      <h3 style="color: var(--primary-magenta); margin-bottom: 6px; font-family: 'Outfit';">Scanned Face Verification</h3>
+      <p id="face-preview-meta" style="font-size: 11px; color: var(--text-muted); margin-bottom: 16px;">Captured Snapshot Details</p>
+      <div style="width: 100%; height: 240px; background: #050508; border-radius: 12px; overflow: hidden; border: 2px solid var(--border-color); display: flex; align-items: center; justify-content: center; position: relative;">
+        <img id="face-preview-img" src="" style="width: 100%; height: 100%; object-fit: cover; transform: scaleX(-1);">
+        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 1px dashed var(--primary-magenta); border-radius: 10px; pointer-events: none; opacity: 0.35;"></div>
+      </div>
+      <button type="button" class="btn btn-secondary btn-sm" style="margin-top: 20px; width: 100%; cursor: pointer;" onclick="closeModal('face-preview-modal')">Close Preview</button>
+    </div>
+  </div>
+
+  <!-- Review Task/Report Feedback Modal -->
+  <div class="modal-overlay" id="review-feedback-modal">
+    <div class="modal-content glass-panel">
+      <div class="modal-close" onclick="closeModal('review-feedback-modal')">&times;</div>
+      <h3 class="mb-4" id="feedback-modal-title">Review Submission</h3>
+      <form id="feedback-submission-form">
+        <input type="hidden" id="feedback-item-id">
+        <input type="hidden" id="feedback-item-type"> <!-- 'task' or 'log' -->
+        <div class="form-group">
+          <label>Submitted Content Details</label>
+          <div id="feedback-submission-details" style="font-size: 13px; color: var(--text-muted); background: rgba(255,255,255,0.02); padding: 12px; border-radius: 8px; max-height: 120px; overflow-y: auto; border: 1px solid var(--border-color);">
+            Submission text details placeholder
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="feedback-comments">Feedback / Review Comments</label>
+          <textarea id="feedback-comments" class="form-control" rows="3" placeholder="Enter details for the student..." required></textarea>
+        </div>
+        <div class="flex gap-2">
+          <button type="button" class="btn btn-primary" style="flex: 1;" onclick="submitReviewOutcome('Approved')">Approve / Complete</button>
+          <button type="button" class="btn btn-secondary" style="flex: 1; border-color: var(--danger); color: var(--danger);" onclick="submitReviewOutcome('Needs Revision')">Request Changes</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Edit Profile Modal -->
+  <div class="modal-overlay" id="edit-profile-modal">
+    <div class="modal-content glass-panel">
+      <div class="modal-close" onclick="closeModal('edit-profile-modal')">&times;</div>
+      <h3 class="mb-4">Edit Profile Settings</h3>
+      <form id="edit-profile-form" onsubmit="handleEditProfileSubmit(event)">
+        <div class="form-group">
+          <label for="edit-profile-name">Full Name</label>
+          <input type="text" id="edit-profile-name" class="form-control" placeholder="E.g., Rohan Das" required>
+        </div>
+        
+        <div class="form-group" id="edit-profile-domain-group">
+          <label for="edit-profile-domain">Technical Domain</label>
+          <input type="text" id="edit-profile-domain" class="form-control" placeholder="E.g., Frontend Development">
+        </div>
+        
+        <div class="form-group hidden" id="edit-profile-title-group">
+          <label for="edit-profile-title">Job Title</label>
+          <input type="text" id="edit-profile-title" class="form-control" placeholder="E.g., Engineering Team Lead">
+        </div>
+
+        <div class="form-group">
+          <label>Choose Avatar Profile Picture</label>
+          <div class="avatar-presets" id="avatar-presets-container" style="display: flex; gap: 12px; margin-top: 8px; margin-bottom: 8px; justify-content: space-between;">
+            <!-- Presets injected via JS -->
+          </div>
+          <label for="edit-profile-avatar-file" style="margin-top: 8px;">Or Upload Custom Image File</label>
+          <input type="file" id="edit-profile-avatar-file" class="form-control" accept="image/*" onchange="handleProfileImageUpload(event)" style="background: rgba(255,255,255,0.02); border: 1px dashed var(--border-color); color: var(--text-muted); cursor: pointer; padding: 10px 16px;">
+        </div>
+        <!-- Student Edit Profile Face Scanner Section -->
+        <div id="edit-profile-face-scan-section" class="form-group hidden" style="margin-top: 15px; border-top: 1px solid var(--border-color); padding-top: 15px;">
+          <label style="display: block; font-size: 13px; font-weight: 500; margin-bottom: 8px; color: var(--text-muted);">Enroll AI Face Attendance Profile</label>
+          <div class="face-scan-container">
+            <video id="edit-webcam" class="face-scan-video" autoplay playsinline muted></video>
+            <div class="face-scan-overlay"></div>
+            <div class="face-scan-bar"></div>
+            <div id="edit-face-captured-overlay" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; background: rgba(7, 7, 10, 0.85); display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 8px; z-index: 10; display: none;">
+              <span style="color: var(--success); font-size: 28px;">✔️</span>
+              <span style="color: #fff; font-size: 12px; font-weight: 600;">Face Enrolled Successfully!</span>
+            </div>
+          </div>
+          <div style="display: flex; gap: 8px; margin-top: 10px;">
+            <button type="button" class="btn btn-secondary btn-sm" onclick="toggleEditWebcam()" id="edit-webcam-toggle-btn" style="flex: 1; border-color: var(--primary-magenta); color: var(--primary-magenta); cursor: pointer;">🔌 Turn On Camera</button>
+            <button type="button" class="btn btn-primary btn-sm" onclick="captureEditFace()" id="edit-capture-btn" style="flex: 1; display: none; cursor: pointer;">📸 Capture Face</button>
+          </div>
+          <div id="edit-file-upload-container" style="margin-top: 10px; display: none;">
+            <label for="edit-file-input" style="display: block; font-size: 11px; color: var(--text-muted); margin-bottom: 4px;">Or upload a face photo from your device:</label>
+            <input type="file" id="edit-file-input" accept="image/*" class="form-control" style="font-size: 11px; padding: 4px;" onchange="handleEditFileUpload(event)">
+          </div>
+          <input type="hidden" id="edit-face-data">
+          <div id="edit-face-status" style="font-size: 11px; margin-top: 6px; text-align: center; color: var(--text-dark);">Update your face attendance credentials.</div>
+        </div>
+
+        <div class="form-group">
+          <label for="edit-profile-pwd">Password</label>
+          <input type="password" id="edit-profile-pwd" class="form-control pwd-input" placeholder="Change password" required>
+          <span class="pwd-toggle" onclick="togglePasswordVisibility('edit-profile-pwd')">
+            <svg class="eye-open" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+            <svg class="eye-closed hidden" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path><line x1="1" y1="1" x2="23" y2="23"></line></svg>
+          </span>
+        </div>
+
+        <button type="submit" class="btn btn-primary" style="width: 100%;">Save Profile Changes</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Chat Image Preview Modal (WhatsApp-style lightbox) -->
+  <div class="modal-overlay" id="chat-image-preview-modal" style="z-index: 10003; background: rgba(0,0,0,0.92);">
+    <div class="modal-content glass-panel" style="max-width: 90vw; max-height: 90vh; width: auto; padding: 10px; border: none; background: transparent; display: flex; justify-content: center; align-items: center;">
+      <div class="modal-close" onclick="closeModal('chat-image-preview-modal')" style="top: 10px; right: 10px; font-size: 28px; background: rgba(0,0,0,0.5); width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 50%; cursor: pointer;">&times;</div>
+      <img id="chat-preview-lightbox-img" style="max-width: 85vw; max-height: 80vh; object-fit: contain; border-radius: 8px; box-shadow: 0 0 30px rgba(0,0,0,0.6);" alt="Image preview">
+    </div>
+  </div>
+
+  <!-- Firebase Configuration Modal -->
+  <div class="modal-overlay" id="firebase-config-modal" style="z-index: 10002;">
+    <div class="modal-content glass-panel" style="max-width: 480px; padding: 28px; border-color: var(--primary-magenta);">
+      <div class="modal-close" onclick="closeModal('firebase-config-modal')">&times;</div>
+      <h3 style="color: var(--primary-magenta); margin-bottom: 8px; font-family: 'Outfit', sans-serif;">🔧 Firebase Firestore Settings</h3>
+      <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 20px; line-height: 1.4;">
+        Connect this portal to a live Cloud Firestore database for real-time task allocations, chats, and attendance across different devices and browser tabs. Leaving fields empty will use the Local Storage fallback.
+      </p>
+      
+      <form id="firebase-config-form" onsubmit="saveFirebaseConfig(event)">
+        <div class="form-group" style="margin-bottom: 12px;">
+          <label for="fb-api-key" style="font-size: 11px; font-weight: 600; text-transform: uppercase; color: var(--text-muted); display: block; margin-bottom: 4px;">API Key</label>
+          <input type="text" id="fb-api-key" class="form-control" placeholder="AIzaSy..." style="background-color: #0e0e15; font-family: monospace; font-size: 12px;" required>
+        </div>
+        
+        <div class="form-group" style="margin-bottom: 12px;">
+          <label for="fb-auth-domain" style="font-size: 11px; font-weight: 600; text-transform: uppercase; color: var(--text-muted); display: block; margin-bottom: 4px;">Auth Domain</label>
+          <input type="text" id="fb-auth-domain" class="form-control" placeholder="project-id.firebaseapp.com" style="background-color: #0e0e15; font-family: monospace; font-size: 12px;" required>
+        </div>
+        
+        <div class="form-group" style="margin-bottom: 12px;">
+          <label for="fb-project-id" style="font-size: 11px; font-weight: 600; text-transform: uppercase; color: var(--text-muted); display: block; margin-bottom: 4px;">Project ID</label>
+          <input type="text" id="fb-project-id" class="form-control" placeholder="project-id" style="background-color: #0e0e15; font-family: monospace; font-size: 12px;" required>
+        </div>
+        
+        <div class="form-group" style="margin-bottom: 12px;">
+          <label for="fb-storage-bucket" style="font-size: 11px; font-weight: 600; text-transform: uppercase; color: var(--text-muted); display: block; margin-bottom: 4px;">Storage Bucket</label>
+          <input type="text" id="fb-storage-bucket" class="form-control" placeholder="project-id.appspot.com" style="background-color: #0e0e15; font-family: monospace; font-size: 12px;" required>
+        </div>
+        
+        <div class="form-group" style="margin-bottom: 12px;">
+          <label for="fb-messaging-sender-id" style="font-size: 11px; font-weight: 600; text-transform: uppercase; color: var(--text-muted); display: block; margin-bottom: 4px;">Messaging Sender ID</label>
+          <input type="text" id="fb-messaging-sender-id" class="form-control" placeholder="1234567890" style="background-color: #0e0e15; font-family: monospace; font-size: 12px;" required>
+        </div>
+        
+        <div class="form-group" style="margin-bottom: 20px;">
+          <label for="fb-app-id" style="font-size: 11px; font-weight: 600; text-transform: uppercase; color: var(--text-muted); display: block; margin-bottom: 4px;">App ID</label>
+          <input type="text" id="fb-app-id" class="form-control" placeholder="1:1234567890:web:abcdef" style="background-color: #0e0e15; font-family: monospace; font-size: 12px;" required>
+        </div>
+        
+        <div style="display: flex; gap: 8px;">
+          <button type="submit" class="btn btn-primary" style="flex: 2; padding: 10px 16px; font-size: 13px; font-weight: 600; cursor: pointer;">Save & Connect</button>
+          <button type="button" class="btn btn-secondary" onclick="disconnectFirebase()" style="flex: 1; padding: 10px 16px; font-size: 12px; border-color: var(--danger); color: var(--danger); cursor: pointer;">Disconnect</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Temporary Database Inspector Panel for Testing & Debugging -->
+  <div id="debug-panel" style="position: fixed; bottom: 10px; right: 10px; z-index: 9999; background: rgba(15, 15, 25, 0.98); border: 2px solid var(--primary-magenta); padding: 15px; border-radius: 12px; width: 450px; max-height: 400px; overflow-y: auto; font-family: monospace; font-size: 11px; color: #fff; box-shadow: 0 0 25px rgba(0,0,0,0.95); display: none;">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; border-bottom: 1px solid var(--border-color); padding-bottom: 5px;">
+      <strong style="color: var(--primary-magenta); font-size: 12px;">🔧 InternX by UTX Database Inspector</strong>
+      <button onclick="toggleDebugPanel()" style="background: none; border: none; color: #fff; cursor: pointer; font-size: 14px; font-weight: bold;">✕</button>
+    </div>
+    <div id="debug-panel-content">
+      <!-- Injected via JS -->
+    </div>
+    <div style="margin-top: 12px; display: flex; gap: 8px; border-top: 1px solid var(--border-color); padding-top: 8px;">
+      <button class="btn btn-secondary btn-sm" onclick="refreshDebugPanel()" style="padding: 4px 8px; font-size: 10px; cursor: pointer;">🔄 Refresh Data</button>
+      <button class="btn btn-secondary btn-sm" onclick="resetDatabaseForDemo()" style="padding: 4px 8px; font-size: 10px; border-color: var(--danger); color: var(--danger); cursor: pointer;">🗑️ Reset DB</button>
+    </div>
+  </div>
+  <!-- ==================== APEX AI COPILOT FLOATING PANEL ==================== -->
+  <button id="ai-copilot-trigger" class="hidden" title="InternX AI Assistant">
+    <img src="robot_avatar.png" alt="AI Assistant">
+  </button>
+
+  <div id="ai-copilot-panel">
+    <div class="ai-copilot-header">
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <div class="ai-header-avatar">
+          <img src="robot_avatar.png" alt="AI Assistant">
+          <div class="ai-status-indicator"></div>
+        </div>
+        <div>
+          <h4 style="margin: 0; font-size: 13px; font-weight: 700; color: #fff; font-family: 'Outfit'; line-height: 1.2;">InternX AI Assistant</h4>
+          <span style="font-size: 9px; color: var(--success); display: flex; align-items: center; gap: 4px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; margin-top: 2px;">
+            <span style="display: inline-block; width: 5px; height: 5px; border-radius: 50%; background: var(--success); box-shadow: 0 0 4px var(--success);"></span> Online
+          </span>
+        </div>
+      </div>
+      <div class="ai-copilot-actions">
+        <button class="ai-copilot-action-btn" onclick="toggleAICopilotSettings()" title="Gemini API Key Settings">⚙️</button>
+        <button class="ai-copilot-action-btn" onclick="toggleAICopilot()" title="Close Panel" style="font-size: 20px;">&times;</button>
+      </div>
+    </div>
+
+    <!-- Settings slide drawer -->
+    <div id="ai-copilot-settings">
+      <div class="ai-settings-inner">
+        <label for="ai-gemini-key">Enter Google Gemini API Key:</label>
+        <input type="password" id="ai-gemini-key" class="form-control" style="padding: 6px 12px; font-size: 12px; background: rgba(0,0,0,0.3);" placeholder="AIzaSy...">
+        <div style="display: flex; gap: 8px; margin-top: 4px;">
+          <button class="btn btn-primary btn-sm" onclick="saveGeminiKey()" style="padding: 4px 10px; font-size: 10px; border-radius: 4px; background: var(--primary-magenta); border-color: var(--primary-magenta);">Save Key</button>
+          <button class="btn btn-secondary btn-sm" onclick="clearGeminiKey()" style="padding: 4px 10px; font-size: 10px; border-radius: 4px; color: var(--danger); border-color: var(--danger); background: rgba(239, 68, 68, 0.1);">Clear Key</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Suggestion FAQ Chips -->
+    <div class="ai-copilot-suggestions">
+      <div class="ai-suggestion-chip" onclick="askCopilotFAQ('structure')">📂 Project Structure</div>
+      <div class="ai-suggestion-chip" onclick="askCopilotFAQ('db')">🗄️ Database Collections</div>
+      <div class="ai-suggestion-chip" onclick="askCopilotFAQ('attendance')">📊 Attendance Flow</div>
+      <div class="ai-suggestion-chip" onclick="askCopilotFAQ('features')">✨ Core Features</div>
+    </div>
+
+    <!-- Scrollable Chat History -->
+    <div class="ai-copilot-history" id="ai-copilot-history-list">
+      <!-- Injected via JS -->
+    </div>
+
+    <!-- Input Composer -->
+    <form class="ai-copilot-composer" onsubmit="handleSendAICopilot(event)">
+      <input type="text" id="ai-copilot-input" class="form-control" style="margin: 0; padding: 10px 14px; font-size: 12px; background: rgba(0,0,0,0.3);" placeholder="Ask about project structure, collections..." autocomplete="off">
+      <button type="submit" class="btn btn-primary" style="margin: 0; padding: 10px 16px; font-size: 12px; height: 38px; background: var(--primary-magenta); border-color: var(--primary-magenta);">Send</button>
+    </form>
+  </div>
+
+  <button id="debug-panel-trigger" onclick="toggleDebugPanel()" style="position: fixed; bottom: 15px; right: 15px; z-index: 9998; background: var(--primary-magenta); color: #fff; border: none; padding: 8px 14px; border-radius: 20px; font-family: sans-serif; font-size: 11px; font-weight: bold; cursor: pointer; box-shadow: 0 0 15px rgba(217, 4, 181, 0.5);">🔧 Inspect Database</button>
+
+  <!-- ==================== INCOMING VIDEO CALL SCREEN ==================== -->
+  <div id="incoming-call-overlay" class="modal-overlay" style="z-index: 10001; background: rgba(5, 5, 8, 0.96); backdrop-filter: blur(15px);">
+    <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 24px; text-align: center; max-width: 400px; padding: 40px;" class="glass-panel">
+      <!-- Pulsing visual caller layout -->
+      <div style="position: relative; width: 120px; height: 120px; margin-bottom: 10px;">
+        <div class="incoming-pulse-ring ring1"></div>
+        <div class="incoming-pulse-ring ring2"></div>
+        <img src="" id="incoming-caller-avatar" alt="Mentor" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover; border: 3px solid var(--primary-magenta); position: relative; z-index: 2;">
+      </div>
+      <div>
+        <h3 id="incoming-caller-name" style="font-size: 22px; color: #fff; margin-bottom: 8px;">Mentor Name</h3>
+        <p style="font-size: 13px; color: var(--primary-magenta); font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;">Incoming Meeting Call...</p>
+      </div>
+      <div style="display: flex; gap: 20px; width: 100%; margin-top: 10px;">
+        <button class="btn btn-primary" onclick="acceptIncomingCall()" style="flex: 1; padding: 12px; font-size: 14px; background: var(--success); box-shadow: 0 4px 15px rgba(16, 185, 129, 0.35); border: none; cursor: pointer;">
+          Accept Call 📞
+        </button>
+        <button class="btn btn-secondary" onclick="declineIncomingCall()" style="flex: 1; padding: 12px; font-size: 14px; border-color: var(--danger); color: var(--danger); cursor: pointer;">
+          Decline ✕
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== VIDEO MEETING ROOM SCREEN ==================== -->
+  <div id="meeting-room-overlay" class="modal-overlay" style="z-index: 10002; background: rgba(3, 3, 5, 0.98); backdrop-filter: blur(25px); overflow: hidden;">
+    <div class="meeting-room-container" style="width: 100%; height: 100%; display: flex; flex-direction: column; padding: 20px; position: relative;">
+      
+      <!-- Top Title Bar -->
+      <div class="meeting-header-bar" style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color); padding-bottom: 15px; margin-bottom: 20px;">
+        <div>
+          <h3 id="meeting-room-title" style="color: #fff; font-size: 20px; display: flex; align-items: center; gap: 8px;">
+            <span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--success); box-shadow: 0 0 8px var(--success);"></span>
+            Active Group Session
+          </h3>
+          <p style="font-size: 12px; color: var(--text-muted);">Host: <span id="meeting-host-name" style="color: var(--primary-magenta); font-weight: 600;">Mentor</span></p>
+        </div>
+        <div style="font-size: 13px; color: var(--text-muted);" id="meeting-timer">Time Elapsed: 00:00</div>
+      </div>
+
+      <!-- Main Section: Grid & Sidebar Split -->
+      <div style="display: flex; flex: 1; gap: 20px; min-height: 0; position: relative;">
+        <!-- Left Pane: Responsive Video Feeds Grid -->
+        <div class="meeting-video-grid-wrapper" style="flex: 1; display: flex; flex-direction: column; min-height: 0;">
+          <div id="meeting-video-grid" class="meeting-video-grid">
+            <!-- Dynamic Video Tiles go here -->
+          </div>
+        </div>
+
+        <!-- Right Pane: Live Sidebar (Chat and Participant Tabs) -->
+        <div class="meeting-sidebar glass-panel" style="width: 320px; display: flex; flex-direction: column; min-height: 0; padding: 16px; border-radius: 12px;">
+          <!-- Sidebar Tabs Header -->
+          <div style="display: flex; border-bottom: 1px solid var(--border-color); padding-bottom: 10px; margin-bottom: 12px; gap: 10px;">
+            <button class="meet-tab-btn active" id="meet-tab-chat-btn" onclick="switchMeetingSidebarTab('chat')" style="background: none; border: none; font-size: 12px; font-weight: 600; color: var(--primary-magenta); padding: 4px 8px; cursor: pointer;">
+              Group Chat
+            </button>
+            <button class="meet-tab-btn" id="meet-tab-users-btn" onclick="switchMeetingSidebarTab('users')" style="background: none; border: none; font-size: 12px; font-weight: 600; color: var(--text-muted); padding: 4px 8px; cursor: pointer;">
+              Participants (<span id="meet-participants-count">1</span>)
+            </button>
+          </div>
+
+          <!-- Chat Content Tab -->
+          <div id="meet-sidebar-chat" class="meet-sidebar-content" style="flex-grow: 1; display: flex; flex-direction: column; min-height: 0;">
+            <div id="meet-chat-history" style="flex-grow: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; padding-right: 4px; margin-bottom: 10px;" class="attendance-table-wrap">
+              <!-- Messages -->
+            </div>
+            <form onsubmit="sendMeetingChatMessage(event)" style="display: flex; gap: 6px; border-top: 1px solid var(--border-color); padding-top: 8px;">
+              <input type="text" id="meet-chat-input" class="form-control" placeholder="Send message..." style="margin: 0; padding: 8px 12px; font-size: 13px;" autocomplete="off">
+              <button class="btn btn-primary" style="margin: 0; padding: 8px 14px; font-size: 13px;" type="submit">Send</button>
+            </form>
+          </div>
+
+          <!-- Participants Content Tab -->
+          <div id="meet-sidebar-users" class="meet-sidebar-content hidden" style="flex-grow: 1; overflow-y: auto;">
+            <div id="meet-participants-list" style="display: flex; flex-direction: column; gap: 10px;">
+              <!-- Dynamic Users -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Control Bar -->
+      <div class="meeting-controls-bar" style="display: flex; justify-content: center; align-items: center; padding-top: 20px; border-top: 1px solid var(--border-color); margin-top: 20px; gap: 15px; position: relative;">
+        <button class="meet-ctrl-btn" id="meet-btn-mic" onclick="toggleMeetingMic()" title="Mute/Unmute Mic">
+          🎙️
+        </button>
+        <button class="meet-ctrl-btn" id="meet-btn-cam" onclick="toggleMeetingCam()" title="Camera On/Off">
+          📹
+        </button>
+        <button class="meet-ctrl-btn" id="meet-btn-share" onclick="toggleMeetingShare()" title="Share Mock Screen">
+          🖥️
+        </button>
+        <button class="meet-ctrl-btn leave-btn" onclick="leaveMeeting()" title="End Meeting / Leave" style="background: var(--danger); box-shadow: 0 4px 15px rgba(239, 68, 68, 0.35);">
+          🛑
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ==================== CORE JS CONTROLLERS ==================== -->
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-storage-compat.js"></script>
+  <script src="mockData.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
